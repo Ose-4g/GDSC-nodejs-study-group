@@ -6,6 +6,6 @@ const router = require('express').Router();
 
 router.post('/login', login);
 router.post('/signup', signup);
-router.post('/refresh-token', refreshToken)
+router.post('/refresh-token', refreshToken);
 
 module.exports = router;

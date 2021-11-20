@@ -1,5 +1,5 @@
-const refreshToken = async(req,res,next)=>{
-    /**
+const refreshToken = async (req, res, next) => {
+  /**
      * Takes a parameter 
      * refreshToken 
      * in the body of the request. 
@@ -12,6 +12,6 @@ const refreshToken = async(req,res,next)=>{
         refreshToken: *********
      * }
      */
-}
+};
 
-module.exports = refreshToken
+module.exports = refreshToken;
