@@ -7,11 +7,9 @@ on:
   push:
     branches: 
       - week-1
-      - solution
   pull_request:
     branches: 
       - week-1
-      - solution
 
 jobs:
   build:
@@ -36,9 +34,8 @@ jobs:
           echo "" > .env
           echo PORT =${{ secrets.PORT }} >> .env
           echo NODE_ENV =${{ secrets.NODE_ENV }} >> .env
-          echo MONGO_URL =${{ secrets.MONGO_URL_INT_WEEK_1 }} >> .env
+          echo "MONGO_URL =${{ secrets.MONGO_URL_INT_WEEK_1 }}" >> .env
           echo JWT_SECRET =${{ secrets.JWT_SECRET }} >> .env
           echo JWT_EXPIRES =${{ secrets.JWT_EXPIRES }} >> .env
-          cat .env
           npm install
           npm test
