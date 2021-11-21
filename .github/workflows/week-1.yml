@@ -34,7 +34,7 @@ jobs:
           cd intermediate-week-1
           touch .env
           echo "" > .env
-          echo MONGO_URLLLLLLLLLL=${{ secrets.MONGO_URL_INT_WEEK_1 }} >> .env
+          echo "MONGO_URL=${{ secrets.MONGO_URL_INT_WEEK_1 }}" >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env
           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
