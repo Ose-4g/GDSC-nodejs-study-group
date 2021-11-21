@@ -1,0 +1,31 @@
+{
+  "name": "GDSC-study-group",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ose-4g/GDSC-nodejs-study-group.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ose-4g/GDSC-nodejs-study-group/issues"
+  },
+  "homepage": "https://github.com/Ose-4g/GDSC-nodejs-study-group#readme",
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write intermediate-week-1"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.1",
+    "prettier": "^2.4.1"
+  }
+}
