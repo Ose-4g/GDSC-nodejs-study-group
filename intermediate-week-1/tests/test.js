@@ -33,8 +33,8 @@ describe('Tests for the endpoints', () => {
       .post('/auth/signup')
       .send(USER)
       .end((err, res) => {
-        assert.property(res.body, 'message');
-        assert.equal(res.status, 201);
+        assert.property(res.body, 'message', 'sign up endpoint response should have message property');
+        assert.equal(res.status, 201, 'signup endpoint should have a 201 reponse');
         done();
       });
   });
@@ -43,10 +43,10 @@ describe('Tests for the endpoints', () => {
     User.findOne({ email: USER.email })
       .select('+password')
       .then((user) => {
-        assert.isNotNull(user);
-        assert.equal(user.firstName, USER.firstName);
-        assert.equal(user.lastName, USER.lastName);
-        assert.notEqual(user.password, USER.password);
+        assert.isNotNull(user, 'user that signed up does not have details saved in database');
+        assert.equal(user.firstName, USER.firstName, 'firstname that was saved doesnt match users name');
+        assert.equal(user.lastName, USER.lastName, 'last name that was saved doesnt math what the user entered');
+        assert.notEqual(user.password, USER.password, 'password has not been hashed');
         done();
       })
       .catch((err) => {
@@ -64,8 +64,8 @@ describe('Tests for the endpoints', () => {
       })
       .end((err, res) => {
         assert.equal(res.status, 200);
-        assert.property(res.body, 'accessToken');
-        assert.property(res.body, 'refreshToken');
+        assert.property(res.body, 'accessToken', 'login response should have access token property');
+        assert.property(res.body, 'refreshToken', 'login response should have refresh token');
         refreshToken = res.body.refreshToken;
         accessToken = res.body.accessToken;
         done();
@@ -78,9 +78,9 @@ describe('Tests for the endpoints', () => {
       .get('/user')
       .set('Authorization', `Bearer ${accessToken}`)
       .end((err, res) => {
-        assert.equal(res.body.firstName, USER.firstName);
-        assert.equal(res.body.lastName, USER.lastName);
-        assert.equal(res.body.email, USER.email);
+        assert.equal(res.body.firstName, USER.firstName, 'wrong firstname sent in get user info');
+        assert.equal(res.body.lastName, USER.lastName, 'wrong lastname sent in get user info');
+        assert.equal(res.body.email, USER.email, 'wrong email sent in get user info');
         done();
       });
   });
@@ -94,8 +94,8 @@ describe('Tests for the endpoints', () => {
       })
       .end((err, res) => {
         assert.equal(res.status, 200);
-        assert.property(res.body, 'accessToken');
-        assert.property(res.body, 'refreshToken');
+        assert.property(res.body, 'accessToken', 'refresh token endpoint repsonse should have accesstoken property');
+        assert.property(res.body, 'refreshToken', 'refresh token endpoint response should have refreshtoken property');
         assert.notEqual(res.body.accessToken, accessToken);
 
         refreshToken = res.body.refreshToken;

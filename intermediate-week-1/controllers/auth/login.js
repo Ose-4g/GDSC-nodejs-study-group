@@ -1,6 +1,5 @@
 const User = require('../../models/User');
 const { generateAccessToken, generateRefreshToken } = require('../../utils/token');
-const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 
 const login = async (req, res, next) => {
@@ -11,11 +10,22 @@ const login = async (req, res, next) => {
     }
     */
   const { email, password } = req.body;
-  const user = await User.findOne(email).select('+password');
-
+  const user = await User.findOne({ email }).select('+password');
+  const { firstName, lastName } = user;
   const validLogin = await bcrypt.compare(password, user.password);
-  const accessToken = generateAccessToken(user);
-  const refreshToken = generateRefreshToken(user, accessToken);
+  const accessToken = generateAccessToken({
+    email,
+    firstName,
+    lastName,
+  });
+  const refreshToken = await generateRefreshToken(
+    {
+      email,
+      firstName,
+      lastName,
+    },
+    accessToken
+  );
 
   res.status(200).json({
     accessToken,
