@@ -1,4 +1,5 @@
-const { refreshTokens } = require('../../utils/token');
+const { refreshTokens, generateAccessToken } = require('../../utils/token');
+
 const refreshAccessToken = async (req, res, next) => {
   /**
      * Takes a parameter 
@@ -13,7 +14,15 @@ const refreshAccessToken = async (req, res, next) => {
         refreshToken: *********
      * }
      */
-  const details = refreshTokens.get();
+  const { refreshToken } = req.body;
+  const details = refreshTokens.get(refreshToken);
+  const accessToken = generateAccessToken(details.user);
+  refreshTokens.get(refreshTokens).accessToken = accessToken;
+
+  res.status(200).json({
+    accessToken,
+    refreshTokens,
+  });
 };
 
-module.exports = refreshToken;
+module.exports = refreshAccessToken;
