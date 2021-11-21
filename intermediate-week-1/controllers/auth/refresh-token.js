@@ -16,7 +16,6 @@ const refreshAccessToken = async (req, res, next) => {
      */
   const { refreshToken } = req.body;
   const details = refreshTokens.get(refreshToken);
-  console.log(details.user);
   const accessToken = generateAccessToken(details.user);
   refreshTokens.get(refreshToken).accessToken = accessToken;
 
