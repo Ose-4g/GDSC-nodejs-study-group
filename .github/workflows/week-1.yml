@@ -40,5 +40,6 @@ jobs:
           echo JWT_SECRET =${{ secrets.JWT_SECRET }} >> .env
           echo JWT_EXPIRES =${{ secrets.JWT_EXPIRES }} >> .env
           cat .env
+          ls -a
           npm install
           npm test
