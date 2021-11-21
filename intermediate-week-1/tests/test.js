@@ -86,22 +86,28 @@ describe('Tests for the endpoints', () => {
   });
 
   it('Refresh token endpoint shoult return the refresh token and a new accessToken', (done) => {
-    chai
-      .request(server)
-      .post('/auth/refresh-token')
-      .send({
-        refreshToken,
-      })
-      .end((err, res) => {
-        assert.equal(res.status, 200);
-        assert.property(res.body, 'accessToken', 'refresh token endpoint repsonse should have accesstoken property');
-        assert.property(res.body, 'refreshToken', 'refresh token endpoint response should have refreshtoken property');
-        assert.notEqual(res.body.accessToken, accessToken);
+    setTimeout(() => {
+      chai
+        .request(server)
+        .post('/auth/refresh-token')
+        .send({
+          refreshToken,
+        })
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.property(res.body, 'accessToken', 'refresh token endpoint repsonse should have accesstoken property');
+          assert.property(
+            res.body,
+            'refreshToken',
+            'refresh token endpoint response should have refreshtoken property'
+          );
+          assert.notEqual(res.body.accessToken, accessToken);
 
-        refreshToken = res.body.refreshToken;
-        accessToken = res.body.accessToken;
-        done();
-      });
+          refreshToken = res.body.refreshToken;
+          accessToken = res.body.accessToken;
+          done();
+        });
+    }, 2000);
   });
 
   it('New access token should work just like before', (done) => {
