@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const logger = require('./logger');
 
 const MONGO_URL = process.env.MONGO_URL;
-
+console.log(MONGO_URL);
+console.log(process.env.PORT, process.env.NODE_ENV);
 module.exports = async () => {
   try {
     await mongoose.connect(MONGO_URL, {
