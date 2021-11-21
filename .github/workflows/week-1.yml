@@ -35,5 +35,6 @@ jobs:
           echo MONGO_URL =${{ secrets.MONGO_URL_INT_WEEK_1 }} >> .env
           echo JWT_SECRET =${{ secrets.JWT_SECRET }} >> .env
           echo JWT_EXPIRES =${{ secrets.JWT_EXPIRES }} >> .env
+          cat .env
           npm install
           npm test
