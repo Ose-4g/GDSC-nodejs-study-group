@@ -28,8 +28,8 @@ jobs:
       - name: create env file
         run: |
           cd intermediate-week-1
-          rm .env
           touch .env
+          echo "" > .env
           echo PORT =${{ secrets.PORT }} >> .env
           echo NODE_ENV =${{ secrets.NODE_ENV }} >> .env
           echo MONGO_URL =${{ secrets.MONGO_URL_AUTH_CLASS }} >> .env
