@@ -9,7 +9,12 @@ const signup = async (req, res, next) => {
    * passwordConfirm
    *
    * and saves it to the MongoDB database
+   *
    */
+
+  res.status(201).json({
+    message: 'Stored user details successfully',
+  });
 };
 
 module.exports = signup;

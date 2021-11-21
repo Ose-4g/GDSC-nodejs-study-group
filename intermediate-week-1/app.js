@@ -7,6 +7,7 @@ const morgan = require('morgan');
 
 //getting all routes
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -21,12 +22,13 @@ if (process.env.NODE_ENV === 'development') {
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    message: 'Hello there, Welcome to guavar with an R',
+    message: 'Hello there, This is your fiurst assignment in the GDSC NodeJs intermediate study group',
   });
 });
 
 //setting up all routers
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 //for invalid route
 app.use((req, res, next) => {
