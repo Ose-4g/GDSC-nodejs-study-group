@@ -1,4 +1,4 @@
-const refreshToken = async (req, res, next) => {
+const refreshAccessToken = async (req, res, next) => {
   /**
      * Takes a parameter 
      * refreshToken 
@@ -14,4 +14,4 @@ const refreshToken = async (req, res, next) => {
      */
 };
 
-module.exports = refreshToken;
+module.exports = refreshAccessToken;
