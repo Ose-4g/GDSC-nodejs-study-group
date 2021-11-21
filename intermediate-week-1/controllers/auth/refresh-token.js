@@ -1,4 +1,5 @@
-const refreshToken = async (req, res, next) => {
+const { refreshTokens } = require('../../utils/token');
+const refreshAccessToken = async (req, res, next) => {
   /**
      * Takes a parameter 
      * refreshToken 
@@ -12,6 +13,7 @@ const refreshToken = async (req, res, next) => {
         refreshToken: *********
      * }
      */
+  const details = refreshTokens.get();
 };
 
 module.exports = refreshToken;
