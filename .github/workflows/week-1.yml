@@ -25,17 +25,15 @@ jobs:
       #   with:
       #     node-version: ${{ matrix.node-version }}
       #     cache: 'npm'
-      - name: create env file
+      - name: create env file and run tests
         run: |
           cd intermediate-week-1
           touch .env
           echo "" > .env
           echo PORT =${{ secrets.PORT }} >> .env
           echo NODE_ENV =${{ secrets.NODE_ENV }} >> .env
-          echo MONGO_URL =${{ secrets.MONGO_URL_AUTH_CLASS }} >> .env
+          echo MONGO_URL =${{ secrets.MONGO_URL_INT_WEEK_1 }} >> .env
           echo JWT_SECRET =${{ secrets.JWT_SECRET }} >> .env
           echo JWT_EXPIRES =${{ secrets.JWT_EXPIRES }} >> .env
-
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+          npm install
+          npm test
